@@ -6,6 +6,7 @@ from .data_sources import fetch_crypto_simple
 from .fx_data import fetch_fx_rates
 from .anomaly import detect_top_movers
 from .summary import build_rule_based_summary
+from .utils import ensure_dirs, save_json, save_text
 
 
 def _normalise_crypto(raw: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -27,10 +28,17 @@ def _normalise_crypto(raw: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 def run_once() -> Dict[str, Any]:
     """
-    First working step of the Market Data Agent.
-    Fetches a small set of crypto prices and returns them as a snapshot.
+    Market Data Agent execution:
+    - fetches crypto and FX
+    - detects top movers
+    - builds a rule-based summary
+    - persists snapshot and summary to disk
     """
-    timestamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    now = datetime.now(timezone.utc)
+    timestamp = now.isoformat(timespec="seconds")
+    run_date = now.date().isoformat()  # <-- this line defines run_date
+
+    ensure_dirs("data", "out")
 
     snapshot: Dict[str, Any] = {
         "as_of": timestamp,
@@ -70,6 +78,18 @@ def run_once() -> Dict[str, Any]:
     summary_text = build_rule_based_summary(snapshot)
     snapshot["rule_summary"] = summary_text
 
-    snapshot["message"] = "Fetched data, detected movers, and built rule-based summary."
+    # --- Persist outputs ---
+    json_path = f"data/snapshot-{run_date}.json"
+    summary_path = f"out/summary-{run_date}.md"
+
+    save_json(snapshot, json_path)
+    save_text(summary_text, summary_path)
+
+    snapshot["outputs"] = {
+        "snapshot_json": json_path,
+        "summary_markdown": summary_path,
+    }
+
+    snapshot["message"] = "Fetched data, detected movers, built summary and saved outputs."
 
     return snapshot

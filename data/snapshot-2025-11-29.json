@@ -1,0 +1,44 @@
+{
+  "as_of": "2025-11-29T14:29:40+00:00",
+  "status": "ok",
+  "crypto": [
+    {
+      "id": "bitcoin",
+      "price_usd": 90678.0,
+      "pct_change_24h": -2.3377514677199325
+    },
+    {
+      "id": "ethereum",
+      "price_usd": 2996.02,
+      "pct_change_24h": -3.066801445202093
+    },
+    {
+      "id": "solana",
+      "price_usd": 136.82,
+      "pct_change_24h": -4.320846886532113
+    }
+  ],
+  "crypto_top": [],
+  "fx": [
+    {
+      "symbol": "USD",
+      "rate_eur": 1.1566,
+      "pct_change_1d": -0.1726221301570863,
+      "date": "2025-11-28"
+    },
+    {
+      "symbol": "GBP",
+      "rate_eur": 0.8752,
+      "pct_change_1d": -0.022846698652042266,
+      "date": "2025-11-28"
+    },
+    {
+      "symbol": "INR",
+      "rate_eur": 103.4905,
+      "pct_change_1d": -0.08785352596748278,
+      "date": "2025-11-28"
+    }
+  ],
+  "fx_top": [],
+  "rule_summary": "No crypto assets breached the alert threshold today.\n\nNo FX pairs breached the alert threshold today."
+}
