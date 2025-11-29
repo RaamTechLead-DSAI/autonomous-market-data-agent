@@ -7,6 +7,7 @@ from .fx_data import fetch_fx_rates
 from .anomaly import detect_top_movers
 from .summary import build_rule_based_summary
 from .utils import ensure_dirs, save_json, save_text
+import os
 
 
 def _normalise_crypto(raw: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -77,6 +78,20 @@ def run_once() -> Dict[str, Any]:
     # --- Rule-based summary ---
     summary_text = build_rule_based_summary(snapshot)
     snapshot["rule_summary"] = summary_text
+
+    # --- AI reasoning layer ---
+    ai_summary = "AI summary not generated (LLM disabled)."
+    provider = os.getenv("LLM_PROVIDER")
+
+    if provider == "hf":
+        try:
+            from .llm_client import HuggingFaceSummariser
+            llm = HuggingFaceSummariser()
+            ai_summary = llm.summarise(summary_text)
+        except Exception as exc:
+            ai_summary = f"[LLM disabled or unavailable: {exc}]"
+
+    snapshot["ai_summary"] = ai_summary
 
     # --- Persist outputs ---
     json_path = f"data/snapshot-{run_date}.json"

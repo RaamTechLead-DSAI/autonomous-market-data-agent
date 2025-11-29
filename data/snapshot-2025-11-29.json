@@ -1,21 +1,21 @@
 {
-  "as_of": "2025-11-29T14:29:40+00:00",
+  "as_of": "2025-11-29T15:09:55+00:00",
   "status": "ok",
   "crypto": [
     {
       "id": "bitcoin",
-      "price_usd": 90678.0,
-      "pct_change_24h": -2.3377514677199325
+      "price_usd": 90700.0,
+      "pct_change_24h": -1.5776711657610436
     },
     {
       "id": "ethereum",
-      "price_usd": 2996.02,
-      "pct_change_24h": -3.066801445202093
+      "price_usd": 2991.58,
+      "pct_change_24h": -2.2928706994237964
     },
     {
       "id": "solana",
-      "price_usd": 136.82,
-      "pct_change_24h": -4.320846886532113
+      "price_usd": 136.71,
+      "pct_change_24h": -3.9997426101755633
     }
   ],
   "crypto_top": [],
@@ -40,5 +40,6 @@
     }
   ],
   "fx_top": [],
-  "rule_summary": "No crypto assets breached the alert threshold today.\n\nNo FX pairs breached the alert threshold today."
+  "rule_summary": "No crypto assets breached the alert threshold today.\n\nNo FX pairs breached the alert threshold today.",
+  "ai_summary": "AI summary not generated (LLM disabled)."
 }
