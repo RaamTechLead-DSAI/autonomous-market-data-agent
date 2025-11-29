@@ -7,8 +7,14 @@ from .fx_data import fetch_fx_rates
 from .anomaly import detect_top_movers
 from .summary import build_rule_based_summary
 from .utils import ensure_dirs, save_json, save_text
-import os
 
+from pathlib import Path
+import os
+import traceback
+from dotenv import load_dotenv
+# Always load .env from the project root, regardless of where Python is run from.
+BASE_DIR = Path(__file__).resolve().parents[2]  # .../autonomous-market-data-agent
+load_dotenv(BASE_DIR / ".env")
 
 def _normalise_crypto(raw: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
@@ -86,10 +92,15 @@ def run_once() -> Dict[str, Any]:
     if provider == "hf":
         try:
             from .llm_client import HuggingFaceSummariser
+
+            print("LLM_PROVIDER=hf, attempting HuggingFace summariser...")
             llm = HuggingFaceSummariser()
             ai_summary = llm.summarise(summary_text)
         except Exception as exc:
-            ai_summary = f"[LLM disabled or unavailable: {exc}]"
+            print("\n***** LLM ERROR OCCURRED *****")
+            traceback.print_exc()  # full stacktrace in terminal
+            print("******************************\n")
+            ai_summary = f"[LLM disabled or unavailable: {repr(exc)}]"
 
     snapshot["ai_summary"] = ai_summary
 

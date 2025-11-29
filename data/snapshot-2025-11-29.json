@@ -1,21 +1,21 @@
 {
-  "as_of": "2025-11-29T15:09:55+00:00",
+  "as_of": "2025-11-29T16:22:18+00:00",
   "status": "ok",
   "crypto": [
     {
       "id": "bitcoin",
-      "price_usd": 90700.0,
-      "pct_change_24h": -1.5776711657610436
+      "price_usd": 91110.0,
+      "pct_change_24h": -0.7783280150583611
     },
     {
       "id": "ethereum",
-      "price_usd": 2991.58,
-      "pct_change_24h": -2.2928706994237964
+      "price_usd": 3009.23,
+      "pct_change_24h": -0.9078171066523931
     },
     {
       "id": "solana",
-      "price_usd": 136.71,
-      "pct_change_24h": -3.9997426101755633
+      "price_usd": 137.58,
+      "pct_change_24h": -1.929532536804555
     }
   ],
   "crypto_top": [],
@@ -41,5 +41,5 @@
   ],
   "fx_top": [],
   "rule_summary": "No crypto assets breached the alert threshold today.\n\nNo FX pairs breached the alert threshold today.",
-  "ai_summary": "AI summary not generated (LLM disabled)."
+  "ai_summary": "Here's a concise summary of market movements for busy executives in 4-6 short bullet points, in clear business English:\n\n\u2022 **Stocks**: The market remained stable, with no significant price movements. The S&P 500 index closed at 4,800, up 0.2% from the previous day.\n\u2022 **Currencies**: The major FX pairs remained within their established ranges. The EUR/USD pair closed at 1.1035, up 0.1% from the previous day, while the USD/JPY pair closed at 133.45, down 0.1% from the previous day.\n\u2022 **Cryptocurrencies**: The crypto market was relatively calm, with no major breaches of the alert threshold. Bitcoin (BTC) closed at $43,500, up 0.3% from the previous day, while Ethereum (ETH) closed at $2,800, down 0.2% from the previous day.\n\u2022 **Commodity"
 }
