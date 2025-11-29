@@ -3,6 +3,7 @@ from typing import Dict, Any, List
 from datetime import datetime, timezone
 
 from .data_sources import fetch_crypto_simple
+from .fx_data import fetch_fx_rates
 
 
 def _normalise_crypto(raw: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -34,12 +35,18 @@ def run_once() -> Dict[str, Any]:
         "status": "ok",
     }
 
-    # Fetch a small asset list for now; this can be expanded later.
+    # --- Crypto ---
     assets = ["bitcoin", "ethereum", "solana"]
     raw_crypto = fetch_crypto_simple(assets)
     crypto = _normalise_crypto(raw_crypto)
 
     snapshot["crypto"] = crypto
-    snapshot["message"] = "Fetched crypto data from CoinGecko."
+  
+    # --- FX ---
+    fx_symbols = ["USD", "GBP", "INR"]
+    fx_rates = fetch_fx_rates(fx_symbols)
+    snapshot["fx"] = fx_rates
+
+    snapshot["message"] = "Fetched crypto and FX data."
 
     return snapshot
